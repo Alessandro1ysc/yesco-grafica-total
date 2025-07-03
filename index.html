@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yesco Gráfica Total</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
@@ -11,20 +12,21 @@
 
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Poppins', sans-serif;
       color: white;
-      background: url('https://i.imgur.com/n4R6W3z.jpg') no-repeat center center fixed;
+      background: url('https://i.imgur.com/Qik8ZdS.jpeg') no-repeat center center fixed;
       background-size: cover;
     }
 
     .container {
       padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.75);
       min-height: 100vh;
     }
 
     h1, h2 {
       text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     #estado {
@@ -37,21 +39,22 @@
       width: 100%;
       margin-top: 2rem;
       border-collapse: collapse;
-      font-size: 1.2rem;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
+      font-size: 1.1rem;
+      background-color: rgba(30, 30, 30, 0.95);
+      border-radius: 12px;
       overflow: hidden;
+      color: white;
     }
 
     th, td {
       padding: 1rem;
       text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     th {
-      background-color: rgba(255, 255, 255, 0.1);
-      font-weight: bold;
+      background-color: #222;
+      font-weight: 600;
     }
 
     tr:hover {
@@ -139,7 +142,7 @@
           estado.style.color = "gray";
         }
       } catch (err) {
-        document.getElementById("estado").textContent = ";
+        document.getElementById("estado").textContent = "❌ Error al cargar el índice";
         console.error(err);
       }
     }
