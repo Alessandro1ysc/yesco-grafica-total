@@ -4,10 +4,25 @@
   <meta charset="UTF-8">
   <title>Yesco Gráfica Total</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; text-align: center; background: #f5f5f5; }
-    h1 { margin-bottom: 10px; }
-    #total { font-size: 2rem; margin: 20px 0; color: #111; }
-    #contador { font-size: 1.2rem; color: gray; margin-top: 10px; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #total {
+      font-size: 2rem;
+      margin: 20px 0;
+      color: #111;
+    }
+    #contador {
+      font-size: 1.2rem;
+      color: gray;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -16,7 +31,7 @@
   <div id="contador">Actualización en: --:--:--</div>
 
   <script>
-    const proxyURL = "https://yesco-proxy.fly.dev/total"; // puente listo
+    const proxyURL = "https://yesco-proxy.vercel.app/api/total"; // nuevo proxy
 
     const formatNumber = n => n.toLocaleString('es-PE');
 
