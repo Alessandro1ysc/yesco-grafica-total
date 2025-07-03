@@ -1,0 +1,34 @@
+name: Actualizar valor total
+
+on:
+  schedule:
+    - cron: '0 * * * *' # cada hora
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependencias
+        run: npm install axios
+
+      - name: Ejecutar script y actualizar archivo
+        run: |
+          node update.js
+
+      - name: Confirmar y subir cambios
+        run: |
+          git config user.name "Yesco Bot"
+          git config user.email "bot@yesco.com"
+          git add total.json
+          git commit -m "Actualizar valor total automáticamente" || echo "Sin cambios"
+          git push
