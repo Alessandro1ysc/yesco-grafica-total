@@ -35,7 +35,7 @@
 
     async function obtenerTotal() {
       try {
-        const res = await fetch("https://yesco-data.onrender.com/total.json");
+        const res = await fetch("https://script.google.com/macros/s/AKfycbxrJxKZ-n2Mm6p5ztT8N2s0Ll8V-Wkxks7mNYYbHACa_cLxQbfkn8Ywl-dSDD8MaEYi/exec");
         const data = await res.json();
         const total = data.total;
         document.getElementById('total').textContent = `S/. ${formatNumber(total)}`;
