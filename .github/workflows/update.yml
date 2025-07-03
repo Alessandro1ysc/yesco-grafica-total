@@ -2,7 +2,7 @@ name: Actualizar total de cartas FC Mobile
 
 on:
   schedule:
-    - cron: '0 * * * *' # cada hora
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
             const seleccionados = jugadores.filter(j => j.ovr >= 104 && j.ovr <= 109);
             const total = seleccionados.reduce((s, j) => s + (j.value || 0), 0);
             const fs = require('fs');
-            fs.writeFileSync('total.json', JSON.stringify({ total }));
+            fs.writeFileSync('total.json', JSON.stringify({ total, timestamp: new Date().toISOString() }, null, 2));
           }
           run();
           "
@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
+          git pull origin principal || true
           git add total.json
-          git commit -m "Actualizar total.json automáticamente"
-          git push
+          git commit -m "Actualizar total.json automáticamente" || echo "Sin cambios"
+          git push origin principal
