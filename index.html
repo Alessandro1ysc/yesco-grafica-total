@@ -33,34 +33,33 @@
       margin-bottom: 2rem;
     }
 
-    .botones {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .botones a {
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.2s;
-    }
-
-    .botones a:hover {
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 4rem 1rem;
+    table {
+      width: 100%;
+      margin-top: 2rem;
+      border-collapse: collapse;
+      font-size: 1.2rem;
       background-color: rgba(255, 255, 255, 0.05);
-      margin: 2rem 0;
-      border-radius: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1rem;
       text-align: center;
-      font-size: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.1);
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .rango {
+      font-size: 1.3rem;
     }
   </style>
 </head>
@@ -74,17 +73,48 @@
     <!-- Subtítulo -->
     <h1>💰 Guía de Tradeos para Ganar Monedas en FC Mobile</h1>
 
-    <!-- Botones -->
-    <div class="botones">
-      <a href="#seguros" style="background-color: #2ecc71;">✅ Seguros</a>
-      <a href="#normales" style="background-color: #f1c40f;">☘️ Normales</a>
-      <a href="#potencial" style="background-color: #e74c3c;">🔥 Potencial x2</a>
-    </div>
-
-    <!-- Apartados -->
-    <section id="seguros">TOTY</section>
-    <section id="normales">TOTS</section>
-    <section id="potencial">TOTY25</section>
+    <!-- Tabla de Tradeos -->
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>GRL</th>
+          <th>Rango</th>
+          <th>Compra</th>
+          <th>Venta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dembélé</td>
+          <td>88</td>
+          <td class="rango">🔴</td>
+          <td>25M</td>
+          <td>52.300M</td>
+        </tr>
+        <tr>
+          <td>Milinkovic-Savic</td>
+          <td>88</td>
+          <td class="rango">🔴</td>
+          <td>6.500M</td>
+          <td>12M</td>
+        </tr>
+        <tr>
+          <td>Kubo</td>
+          <td>89</td>
+          <td class="rango">🔴</td>
+          <td>7.200M</td>
+          <td>17M</td>
+        </tr>
+        <tr>
+          <td>Maignan</td>
+          <td>88</td>
+          <td class="rango">🔴</td>
+          <td>6.500M</td>
+          <td>11M</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <script>
@@ -109,7 +139,7 @@
           estado.style.color = "gray";
         }
       } catch (err) {
-        document.getElementById("estado").textContent = "❌ Error al cargar el índice";
+        document.getElementById("estado").textContent = ";
         console.error(err);
       }
     }
