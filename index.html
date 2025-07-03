@@ -1,4 +1,126 @@
-<div id="indice-oportunidad">
-  <h2>📉 Índice de Oportunidad</h2>
-  <div id="estado" style="font-size: 2em; color: green;">🟢 Oportunidad de Compra</div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yesco Gráfica Total</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: url('https://i.imgur.com/n4R6W3z.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .container {
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    #estado {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .botones button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .botones button:hover {
+      transform: scale(1.05);
+    }
+
+    .contenido {
+      display: none;
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+    }
+
+    .activo {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Índice de oportunidad -->
+    <h2>📉 Índice de Oportunidad</h2>
+    <div id="estado">Cargando...</div>
+
+    <!-- Subtítulo -->
+    <h1>💰 Guía de Tradeos para Ganar Monedas en FC Mobile</h1>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button onclick="mostrar('seguros')" style="background-color: #2ecc71;">✅ Seguros</button>
+      <button onclick="mostrar('normales')" style="background-color: #f1c40f;">☘️ Normales</button>
+      <button onclick="mostrar('potencial')" style="background-color: #e74c3c;">🔥 Potencial x2</button>
+    </div>
+
+    <!-- Contenidos -->
+    <div id="seguros" class="contenido activo">TOTY</div>
+    <div id="normales" class="contenido">TOTS</div>
+    <div id="potencial" class="contenido">TOTY25</div>
+  </div>
+
+  <script>
+    // Mostrar sección de tradeos
+    function mostrar(seccion) {
+      document.querySelectorAll('.contenido').forEach(div => div.classList.remove('activo'));
+      document.getElementById(seccion).classList.add('activo');
+    }
+
+    // Cargar índice de oportunidad
+    async function cargarIndice() {
+      try {
+        const res = await fetch("https://yesco-total.web.app/indice.json");
+        const data = await res.json();
+        const estado = document.getElementById("estado");
+
+        if (data.oportunidad === "alta") {
+          estado.textContent = "🟢 Oportunidad de Compra";
+          estado.style.color = "limegreen";
+        } else if (data.oportunidad === "media") {
+          estado.textContent = "🟡 Mercado Estable";
+          estado.style.color = "gold";
+        } else if (data.oportunidad === "baja") {
+          estado.textContent = "🔴 Mercado Alto (no comprar)";
+          estado.style.color = "crimson";
+        } else {
+          estado.textContent = "⚪ No disponible";
+          estado.style.color = "gray";
+        }
+      } catch (err) {
+        document.getElementById("estado").textContent = "❌ Error al cargar el índice";
+        console.error(err);
+      }
+    }
+
+    cargarIndice();
+  </script>
+</body>
+</html>
