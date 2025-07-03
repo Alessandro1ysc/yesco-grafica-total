@@ -31,7 +31,7 @@
   <div id="contador">Actualización en: --:--:--</div>
 
   <script>
-    const proxyURL = "https://yesco-proxy.fly.dev/total"; // nuevo proxy activo
+    const proxyURL = "https://yesco-replit-proxy.alessandrobot.repl.co/total";
 
     const formatNumber = n => n.toLocaleString('es-PE');
 
@@ -50,7 +50,7 @@
     function segundosHastaProximaHoraPeru() {
       const ahora = new Date();
       const utc = ahora.getTime() + (ahora.getTimezoneOffset() * 60000);
-      const lima = new Date(utc - (5 * 60 * 60 * 1000)); // UTC-5
+      const lima = new Date(utc - (5 * 60 * 60 * 1000));
       const minutosRest = 59 - lima.getMinutes();
       const segundosRest = 59 - lima.getSeconds();
       return (minutosRest * 60) + segundosRest + 1;
