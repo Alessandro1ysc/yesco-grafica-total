@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Yesco Gráfica Total</title>
+  <style>
+    body { font: 16px sans-serif; padding: 20px }
+    #total { font-size: 2rem; margin: 20px 0 }
+    #contador { font-size: 1.2rem; color: gray }
+  </style>
+</head>
+<body>
+  <h1>Total valor cartas GRL (104‑109)</h1>
+  <div id="total">Cargando...</div>
+  <div id="contador">Actualización en: --:--:--</div>
+  <script>
+    const formatNumber = n => n.toLocaleString('es-PE');
+    const fetchPrices = async () => {
+      const res = await fetch(
+        'https://renderz.app/api/players?auctionable=true&min_rating=104&max_rating=109'
+      );
+      const data = await res.json();
+      return data.map(p => p.value);
+    };
+
+    let segundosRest = 3600;
+
+    async function actualizar() {
+      try {
+        const values = await fetchPrices();
+        const suma = values.reduce((a,b)=>a+b, 0);
+        document.getElementById('total').textContent = `S/. ${formatNumber(suma)}`;
+      } catch (e) {
+        document.getElementById('total').textContent = 'Error al cargar datos';
+        console.error(e);
+      }
+    }
+
+    function iniciarContador() {
+      setInterval(() => {
+        segundosRest--;
+        if (segundosRest <= 0) {
+          actualizar();
+          segundosRest = 3600;
+        }
+        const h = String(Math.floor(segundosRest/3600)).padStart(2,'0');
+        const m = String(Math.floor((segundosRest%3600)/60)).padStart(2,'0');
+        const s = String(segundosRest%60).padStart(2,'0');
+        document.getElementById('contador').textContent = `Actualización en: ${h}:${m}:${s}`;
+      }, 1000);
+    }
+
+    // Ejecutar al cargar
+    actualizar();
+    iniciarContador();
+  </script>
+</body>
+</html>
