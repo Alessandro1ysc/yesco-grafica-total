@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yesco Gráfica Total</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -33,34 +37,30 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 1rem 0;
+      margin: 2rem 0;
       flex-wrap: wrap;
     }
 
-    .botones button {
+    .botones a {
       padding: 1rem 2rem;
       font-size: 1rem;
-      border: none;
       border-radius: 10px;
-      cursor: pointer;
+      text-decoration: none;
+      color: white;
       transition: transform 0.2s;
     }
 
-    .botones button:hover {
+    .botones a:hover {
       transform: scale(1.05);
     }
 
-    .contenido {
-      display: none;
+    section {
+      padding: 4rem 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      margin: 2rem 0;
+      border-radius: 12px;
       text-align: center;
       font-size: 1.5rem;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-    }
-
-    .activo {
-      display: block;
     }
   </style>
 </head>
@@ -76,24 +76,18 @@
 
     <!-- Botones -->
     <div class="botones">
-      <button onclick="mostrar('seguros')" style="background-color: #2ecc71;">✅ Seguros</button>
-      <button onclick="mostrar('normales')" style="background-color: #f1c40f;">☘️ Normales</button>
-      <button onclick="mostrar('potencial')" style="background-color: #e74c3c;">🔥 Potencial x2</button>
+      <a href="#seguros" style="background-color: #2ecc71;">✅ Seguros</a>
+      <a href="#normales" style="background-color: #f1c40f;">☘️ Normales</a>
+      <a href="#potencial" style="background-color: #e74c3c;">🔥 Potencial x2</a>
     </div>
 
-    <!-- Contenidos -->
-    <div id="seguros" class="contenido activo">TOTY</div>
-    <div id="normales" class="contenido">TOTS</div>
-    <div id="potencial" class="contenido">TOTY25</div>
+    <!-- Apartados -->
+    <section id="seguros">TOTY</section>
+    <section id="normales">TOTS</section>
+    <section id="potencial">TOTY25</section>
   </div>
 
   <script>
-    // Mostrar sección de tradeos
-    function mostrar(seccion) {
-      document.querySelectorAll('.contenido').forEach(div => div.classList.remove('activo'));
-      document.getElementById(seccion).classList.add('activo');
-    }
-
     // Cargar índice de oportunidad
     async function cargarIndice() {
       try {
